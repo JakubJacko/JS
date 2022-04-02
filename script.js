@@ -38,17 +38,23 @@ for(const wall of mapa){
     makeWall(wall)
 }
 
-
+const startButton = document.querySelector(".start");
+const metaButton = document.querySelector(".meta");
 
 const game = {
     start(){
         console.log("Game started")
+        startButton.removeEventListener("click", game.start)
+        metaButton.addEventListener("mouseover", game.over)
+        
     },
     over(result){
-        console.log("Game over" + result)}
+        console.log("Game over" + result+"")
+        startButton.addEventListener("click", game.start)
+        metaButton.removeEventListener("mouseover", game.over)
+    }
 }
 
-const startButton = document.querySelector(".start");
 startButton.addEventListener("click", game.start);
 
 
