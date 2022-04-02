@@ -60,9 +60,19 @@ const game = {
         
     },
     wallListening(e){
+        game.over(false)
         console.log(e)
     },
     over(result){
+        if(result) {
+            console.log("You Win")
+            
+         }
+         else{
+            console.log("You Lose")
+         }
+
+
         console.log("Game over" + result+"")
         document.removeEventListener("mousemove", game.wallListening)
         startButton.addEventListener("click", game.start)
