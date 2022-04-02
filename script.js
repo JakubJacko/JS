@@ -40,20 +40,37 @@ for(const wall of mapa){
 
 const startButton = document.querySelector(".start");
 const metaButton = document.querySelector(".meta");
+const allWalls = document.querySelectorAll(".meta, .start, .wall");
+for(const singleWall of allWalls){
+    console.log(singleWall)
+    singleWall.addEventListener("mousemove", e => {
+        e.stopPropagation();
+    })
+    
+
+}
 
 const game = {
     start(){
         console.log("Game started")
         startButton.removeEventListener("click", game.start)
         metaButton.addEventListener("mouseover", game.over)
+        document.addEventListener("mousemove", game.wallListening)
+
         
+    },
+    wallListening(e){
+        console.log(e)
     },
     over(result){
         console.log("Game over" + result+"")
+        document.removeEventListener("mousemove", game.wallListening)
         startButton.addEventListener("click", game.start)
         metaButton.removeEventListener("mouseover", game.over)
     }
 }
+
+
 
 startButton.addEventListener("click", game.start);
 
